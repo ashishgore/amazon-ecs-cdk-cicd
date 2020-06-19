@@ -99,7 +99,7 @@ export class EcsCdkStack extends cdk.Stack {
     const ecrRepo = new ecr.Repository(this, 'EcrRepo');
 
     const gitHubSource = codebuild.Source.gitHub({
-      owner: 'user-name',
+      owner: 'ashishgore',
       repo: 'amazon-ecs-cdk-cicd',
       webhook: true, // optional, default: true if `webhookFilteres` were provided, false otherwise
       webhookFilters: [
@@ -110,7 +110,8 @@ export class EcsCdkStack extends cdk.Stack {
     // CODEBUILD - project
     const project = new codebuild.Project(this, 'MyProject', {
       projectName: `${this.stackName}`,
-      source: gitHubSource,
+      source: 
+      Source,
       environment: {
         buildImage: codebuild.LinuxBuildImage.AMAZON_LINUX_2_2,
         privileged: true
@@ -166,7 +167,7 @@ export class EcsCdkStack extends cdk.Stack {
 
     const sourceAction = new codepipeline_actions.GitHubSourceAction({
       actionName: 'GitHub_Source',
-      owner: 'user-name',
+      owner: 'ashishgore',
       repo: 'amazon-ecs-cdk-cicd',
       branch: 'master',
       oauthToken: cdk.SecretValue.secretsManager("/my/github/token"),
